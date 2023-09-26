@@ -21,8 +21,15 @@ class Game
         puts "Wrong answer!"
         @current_player.lose_life
       end
+
       update_scores
-      break if end_game
+
+      end_game_result = end_game
+      if end_game_result
+        puts end_game_result
+        break
+      end
+
       switch_player
     end
     puts "-------GAME OVER----------"
@@ -42,6 +49,11 @@ class Game
   end
 
  def end_game
-  @player1.lives == 0 || @player2.lives == 0
+  if @player1.lives == 0 || @player2.lives == 0
+    winning_player = (@player1.lives > @player2.lives) ? @player1 : @player2
+    "#{winning_player.name} wins with a score of #{winning_player.lives}/3"
+  else
+    false
   end
+end
 end
