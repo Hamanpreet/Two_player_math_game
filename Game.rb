@@ -9,10 +9,24 @@ class Game
   end
 
   def start_game
-    # while @player1.is_alive? && @player2.is_alive?
-    #   turn
-    # end
-    # end_game
+    puts "Welcome to the 2-player Math Game!"
+    loop do
+      question = generate_question
+      puts "---------NEW TURN---------"
+      puts "#{@current_player.name}: What does #{question.num1} + #{question.num2} equals?"
+      answer = @current_player.get_answer(question)
+      if question.check_answer(answer)
+        puts "Correct! good job"
+      else
+        puts "Wrong answer!"
+        @current_player.lose_life
+      end
+      update_scores
+      break if end_game
+      switch_player
+    end
+    puts "-------GAME OVER----------"
+    puts "Goodbye!"
   end
 
   def switch_player
@@ -24,12 +38,10 @@ class Game
   end
 
   def update_scores
-    puts "Scores: #{@player1.name}: #{@player1.lives}/3, 
-    #{@player2.name}: #{@player2.lives}/3"
+    puts "Scores: #{@player1.name}: #{@player1.lives}/3, #{@player2.name}: #{@player2.lives}/3"
   end
 
  def end_game
-#   winner = (@player1.is_alive? ? @player1 : @player2)
-#   puts "#{winner.name} wins with a score of #{winner.lives}/3"
+  @player1.lives == 0 || @player2.lives == 0
   end
 end

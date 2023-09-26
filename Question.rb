@@ -7,7 +7,7 @@ class Question
   end
 
   def check_answer(answer)
-    answer = @num1 + @num2
+    answer == @num1 + @num2
   end
 
 end

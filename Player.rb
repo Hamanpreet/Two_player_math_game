@@ -18,8 +18,8 @@ def is_alive
   @lives > 0
 end
 
-def get_answer
-  print "#{@name}: What does #{question.num1} + #{question.num2} equal? "
+def get_answer(question)
+  print "#{@name}:"
   gets.chomp.to_i
 end
 end
